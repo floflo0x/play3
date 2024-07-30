@@ -1,0 +1,450 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/style1.css">
+
+<link rel="stylesheet" href="/home.css">
+
+<body class="bg-black">
+    <style>
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            text-decoration: none;
+            color: #7CFC00;
+        }
+
+        .nav-link:hover i {
+            color: #7CFC00;
+        }
+
+        .nav-link:hover span {
+            color: #7CFC00 !important;
+        }
+
+        .nav-link .activeNav {
+            color: #7CFC00 !important;
+        }
+
+        .pBox {
+            border: none;
+            height: 30px;
+            color: inherit;
+            background: transparent;
+            text-indent: 20px;
+            flex-grow: 1;
+            outline: 0px;
+            opacity: 1;
+            caret-color: #00b386;
+            -webkit-text-fill-color: #00b386;
+            padding: 0px;
+        }
+
+        @media (max-width: 800px) {
+            .cTwo {
+                margin-left: 20px !important;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cTwo {
+                margin-left: 0 !important;
+                margin-top: 30px !important;
+            }
+        }
+    </style>
+
+    <header class="header">
+		<div class="header-inner">
+			<div class="container-fluid">
+				<nav class="navbar bg-black fixed-top">
+    				<div class="container-fluid mb-1 justify-content-center display-6">
+    					<b style="background: linear-gradient(to right, #2C69D1, #0ABCF9);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            font-family: 'Ubuntu';"
+                        >Financial</b>
+    				</div>
+    			</nav>
+			</div>
+		</div>
+	</header>
+
+    <div class="loading-spinner" id="loadingSpinner">
+        <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+        <div class="spinner"></div>
+    </div>
+
+    <section>
+		<div class="container">
+			<div class="row justify-content-center position-relative top-0 start-0 p-2" 
+			style="height: 100px; margin-top: 70px; border-radius: 10px; background-image: linear-gradient(to right, #a17ce1, #2196f3);">
+			<div class="row" style="margin-bottom: 10px; color: white; font-weight: bold;">
+				<div class="col-xxl text-center">
+                    <%= x.title.toUpperCase() %>
+                </div>
+                <div class="col-6 text-center">
+                    <%= f %>%
+                </div>
+                <div class="col-6 text-center">
+                    <%= x.daily_rate %>%
+                </div>
+			</div>
+		</div>
+		</div>
+	</section>
+
+    <section>
+        <div class="container" id="products">
+            <div class="row justify-content-center" style="margin-top: -10px; padding-top: 20px;">
+                <div class="col-xxl text-white">
+                    <h3>Product Term</h3>
+                </div>
+                <div class="col-xxl">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td style="color: blue;">Buy</td>
+                                <td class="text-end text-white">Expired time</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white"><%= newDate3 %></td>
+                                <td class="text-end text-white"><%= newDate2 %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xxl text-white">
+                    <h3>Product rules</h3>
+                    <h4>Buy</h4>
+                    <p>Min invest: $<%= x.min_invest %></p>
+                    <h4>Locking period</h4>
+                    <p>Can't withdrawal during the product cycle, the income are automatically returned to the wallet.</p>
+                    <h4>Information</h4>
+                    <p>Active products: <%= active %></p> 
+                </div>
+
+                <div class="col-xxl text-white mb-4">
+                    <h4>CALCULATE PROFIT</h4>
+                    <div class="row pt-2 ps-3">
+                        <div class="col p-3 cOne" 
+                            style="border: 1px solid grey; border-radius: 10px; padding-top: 30px;"
+                        >
+                            <div class="d-flex flex-column mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div style="font-size: 18px;">Total investment</div>
+                                    <div class="d-flex">
+                                        <div class="pBox" 
+                                            style="background-color: #C1E1C1; 
+                                                border-radius: 5px 0 0 5px; color: #00b386; font-size: 20px; font-weight: bold; width: 30px; text-indent: 10px;"
+                                        >$</div>
+                                        <input 
+                                            type="text" 
+                                            name="price"
+                                            id="price" 
+                                            value="10"
+                                            class="p-0 border-0 pBox" 
+                                            style="background-color: #C1E1C1; 
+                                                border-radius: 0 5px 5px 0; color: #00b386; font-size: 20px; font-weight: bold; width: 150px;" 
+                                        >
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <input type="range" min="0" max="1000" value="0" id="customRange1" step="10" class="slider">
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column mt-5">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div style="font-size: 18px;">Time Period</div>
+                                    <div class="d-flex">
+                                        <input 
+                                            type="text"
+                                            id="time" 
+                                            name="time" 
+                                            value="<%= x.duration %>"
+                                            class="p-0 border-0 pBox" 
+                                            style="background-color: #C1E1C1; 
+                                                border-radius: 5px 0 0 5px; color: #00b386; font-size: 20px; font-weight: bold; width: 100px" 
+                                        >
+                                        <div class="pBox" 
+                                            style="background-color: #C1E1C1; 
+                                                border-radius: 0 5px 5px 0; color: #00b386; font-size: 20px; font-weight: bold; width: 80px; text-indent: 20px;"
+                                        >Days</div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <input type="range" min="0" max="1000" value="0" id="customRange2" step="10" class="slider">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col p-3 ms-5 cTwo" style="border: 1px solid grey; border-radius: 10px; padding-top: 30px;">
+                            <canvas id="myChart" style="width:100%; max-width:500px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl">
+                    <div class="row">
+                        <div class="col-3 text-center">
+                            <img src=<%= x.image_url %> class="img-fluid" width="40px">
+                        </div>
+                        <div class="col-6 text-center">
+                            <table class="table">
+                              <tbody>
+                                <tr>
+                                  <td class="text-white">Invested amount</td>
+                                  <td class="text-white" id="showData1">$<%= x.min_invest %></td>
+                                </tr>
+                                <tr>
+                                  <td class="text-white">Est. Returns</td>
+                                  <td class="text-white" id="showData2"></td>
+                                </tr>
+                                <tr>
+                                  <td class="text-white">Total value</td>
+                                  <td class="text-white" id="showData3"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-3 text-center">
+                            <a href="<%= set == true ? 'javascript:void(0)' : '#'%>" class="btn bbb" style="text-decoration: none; color: white;">Buy</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-3 text-center">
+                    <img src=<%= x.image_url %> class="img-fluid" width="40px">
+                </div>
+
+                <div class="col-4 text-center p-2" style="background-color: lightblue; color: darkblue; font-size: 20px;">
+                    $<%= x.min_invest %>
+                </div>
+
+                <div class="col-6 text-center p-2" style="background-color: purple;  margin-right: 10px;">
+                    <a href="<%= set == true ? 'javascript:void(0)' : '#'%>" class="btn bbb" style="text-decoration: none; color: white;">Buy</a>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-sm bg-light show" style="height: 200px; position: absolute; top: 50%; padding: 10px; border-radius: 20px; visibility: hidden; box-shadow: 21px 24px 394px 167px dimgray;">
+            <div class="row justify-content-center">
+                <div class="col-2"></div>
+                <div class="col-sm">
+                    <h3>Buy Product</h3>
+                    <p>Are you confirm to buy this product?</p>
+                    
+                    Product Name: <%= x.title %><br>
+                    Daily rate: <%= x.daily_rate %><br>
+                    Duration: <%= x.duration %>days
+                </div>
+                <div class="col-2"></div>
+                <div class="col-xxl text-end" style="display: flex; justify-content:end; align-items:center">
+                    <button type="button" class="btn close border-0" style="color: purple; text-transform: uppercase; font-weight: bold;font-size: 12px;">Close</button>
+                    <a href="/user/confirm/<%= x.p_id %>" style="cursor: pointer; text-decoration: none; color: purple; text-transform: uppercase; font-weight: bold; font-size: 12px;">Yes confirm</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+		<div class="container" style="height: 100px;"></div>
+	</section>
+
+	<footer>
+        <%- include('./includes/footer.ejs', { name: 'finance1' }) %>
+    </footer>
+
+    <script type="text/javascript">
+        let set = "<%= set%>";
+        let l = "<%= l.main_balance %>";
+        let y = "<%= x.min_invest %>";
+        const fin1 = "<%= JSON.stringify(x) %>";
+
+        window.addEventListener('load', function () {
+          // console.log("hii...");
+          // Get the loading spinner element
+          const loadingSpinner = document.getElementById('loadingSpinner');
+            
+          // Hide the loading spinner
+          loadingSpinner.style.display = 'none';
+        });
+    </script>
+
+    <script>
+        const btn = globalThis.document.querySelector('.bbb');
+        const show = globalThis.document.querySelector('.show');
+        const close = globalThis.document.querySelector('.close');
+        const customRange1 = globalThis.document.getElementById("customRange1");
+        const customRange2 = globalThis.document.getElementById("customRange2");
+
+        const showData1 = globalThis.document.getElementById("showData1");
+        const showData2 = globalThis.document.getElementById("showData2");
+        const showData3 = globalThis.document.getElementById("showData3");
+
+        const fin2 = JSON.parse(fin1.replace(/&#34;/g, '"'));
+        //console.log(fin2);
+
+        let ci = 0;
+
+        ci = fin2.min_invest * Math.pow((1+(fin2.daily_rate * 0.01)), fin2.duration);
+
+        let yValues = [];
+        const xValues = ["Invested amount", "Est. returns"];
+         const barColors = [
+             "#e6e9e3",
+             "#0ABCF9"
+         ];
+
+        const estR = Math.abs(((Number(ci) - Number(fin2.min_invest)) / ci ) * 100);
+        const si = Math.abs((Number(ci.toFixed(2)) - Number(fin2.min_invest)).toFixed(2));
+
+        yValues = [fin2.min_invest, si];
+        //console.log("total value = ", ci , si);
+        //console.log(si, ci.toFixed(2), estR, yValues);
+
+        showData3.textContent = "$" + ci.toFixed(2);
+        showData2.textContent = "$" + Math.abs((Number(ci.toFixed(2)) - Number(fin2.min_invest)).toFixed(2));
+
+        let bal = parseInt(l);
+        let minInvest = parseInt(y);
+
+        // console.log(set, btn, bal, minInvest);
+        btn.addEventListener('click', () => {
+            // console.log(btn.getAttribute('href'), bal, minInvest, set);
+            if(btn.getAttribute('href') == '#') {
+                btn.parentElement.style.backgroundColor = 'darkblue';
+                if(bal >= minInvest) {
+                    show.style.visibility = 'visible';
+                }
+                else {
+                    show.style.visibility = 'visible';
+                    show.innerHTML = `
+                        <h2>Insufficient Balance</h2>
+                        <button type="button" class="btn close border-0" style="color: purple; text-transform: uppercase; font-weight: bold;font-size: 12px;" onclick="myFunction()">Close</button>
+                    `;
+                }
+            }
+            else {
+                btn.parentElement.style.backgroundColor = 'dimgray';
+            }
+        })
+
+        close.addEventListener('click', () => {
+            show.style.visibility = 'hidden';
+        })
+
+        function myFunction() {
+            show.style.visibility = 'hidden';
+        }
+
+        function changeIconColor(element) {
+            // Remove 'activeNav' class from all links
+            sdocument.querySelectorAll('.nav-link i').forEach(icon => {
+                icon.style.color = '#ffffff';
+            });
+            document.querySelectorAll('.nav-link span').forEach(text => {
+                text.style.color = 'white';
+            });
+
+            // Set the clicked icon and text to green
+            let icon = link.querySelector('i');
+            icon.style.color = '#7CFC00';
+
+            let text = link.querySelector('span');
+            text.style.color = '#7CFC00';
+        }
+
+        let chart = new Chart("myChart", {
+          type: "doughnut",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+          }
+        });
+
+        customRange1.addEventListener('input', (e) => {
+            // console.log(e.target.value);
+            chart.destroy();
+
+            const price = document.getElementById("price");
+            const time = document.getElementById("time");
+            price.value = e.target.value;
+            //yValues[0] = e.target.value;
+            ci = e.target.value * Math.pow((1+(fin2.daily_rate * 0.01)), time.value);
+
+            const x = Math.abs(((Number(ci) - Number(e.target.value)) / ci ) * 100);
+
+            // console.log(x);
+
+            yValues = [e.target.value, x];
+
+            showData1.textContent = e.target.value;
+            showData3.textContent = ci.toFixed(2);
+            showData2.textContent = Math.abs((Number(ci.toFixed(2)) - Number(e.target.value)).toFixed(2));
+
+            console.log(ci.toFixed(2), x, yValues);
+
+            chart = new Chart("myChart", {
+              type: "doughnut",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  backgroundColor: barColors,
+                  data: yValues
+                }]
+              },
+              options: {}
+            });
+        })
+
+        customRange2.addEventListener('input', (e) => {
+            // console.log(e.target.value);
+
+            chart.destroy();
+
+            const price = document.getElementById("price");
+            const time = document.getElementById("time");
+            time.value = e.target.value;
+            //yValues[0] = price.value;
+
+            ci = price.value * Math.pow((1+(fin2.daily_rate * 0.01)), time.value);
+
+            const x = Math.abs(((Number(ci) - Number(price.value)) / ci ) * 100);
+
+            console.log(x);
+
+            yValues = [price.value, x];
+
+            showData3.textContent = "$"+ci.toFixed(2);
+            showData2.textContent = "$"+Math.abs((Number(ci.toFixed(2)) - Number(price.value)).toFixed(2));
+
+            console.log(ci.toFixed(2), yValues);
+
+            chart = new Chart("myChart", {
+              type: "doughnut",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  backgroundColor: barColors,
+                  data: yValues
+                }]
+              },
+              options: {}
+            });
+        })
+    </script>
+    
+<%- include('./includes/end.ejs') %>

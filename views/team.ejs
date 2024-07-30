@@ -1,0 +1,161 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/style1.css">
+<link rel="stylesheet" href="/team.css">
+
+<body class="bg-black">
+	<style></style>
+
+	<header class="header">
+		<div class="header-inner">
+			<div class="container-fluid">
+				<nav class="navbar bg-black fixed-top">
+				<div class="container-fluid mb-1 justify-content-center display-6">
+					<b style="background: linear-gradient(to top, #7CFC00, #008000);
+            			-webkit-background-clip: text;
+            			-webkit-text-fill-color: transparent;
+            			font-family: 'Ubuntu'"
+            		>Team</b>
+				</div>
+			</nav>
+			</div>
+		</div>
+	</header>
+
+	<div class="loading-spinner" id="loadingSpinner">
+        <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+        <div class="spinner"></div>
+    </div>
+
+	<section>
+		<div class="container mb-3">
+			<div class="row" style="height: 230px; margin-top: 70px; border-radius: 10px; background-image: linear-gradient(to right, #a17ce1, #2196f3); color: white; padding: 5px 0;">
+				<div class="col-xxl text-center mb-2">
+					<b>Rewards for Invite new people</b>
+				</div>
+				<div class="col-7 thirdDiv">
+					<p>After the invitation is successful, your friends will receive 10% of each charge. The more people you invite, the more generous the reward, and the income can be withdrawn at any time. Let's make money together.</p>
+				</div>
+				<div class="col-5">
+    				<img src="https://i.ibb.co/4tvgZ3N/mine-vector.png" height="220px" width="100%">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container bg-black text-white mb-4 border cont2" style="border-radius: 10px;">
+			<div class="row pt-3 pb-3 ps-3 pe-0" style="font-size: 13px;">
+				<div class="col-4 mt-2">
+					<img src="https://i.ibb.co/fH9DcnC/qr-code.jpg" class="img-fluid code1" width="20px">
+					<b class="text-white"><%= x?.invitation_code %></b>
+				</div>
+				<div class="col-8 mb-3 text-end btnDiv">
+					<img src="https://i.ibb.co/2FQ22dJ/2.png" class="img-fluid" width="20px">
+					<button type="button" class="btn border-0 text-white copyBtn" value="<%= x?.invitation_code %>" onclick="copyText()">Copy invitation code</button>
+				</div>
+				<div class="col-4 text-center">
+					<a href="<%= k4?.store_link.whatsapp %>" target="_blank" style="text-decoration: none; color: black;">
+						<img src="https://i.ibb.co/KGbSQq0/n1.png" class="img-fluid" width="30px">
+						<p class="text-white">Share with friends</p>
+					</a>
+				</div>
+				<div class="col-4 text-center">
+					<a href="/user/register" target="_blank" style="text-decoration: none; color: black;">
+						<img src="https://i.ibb.co/t42f13V/number.png" class="img-fluid" width="30px">
+						<p class="text-white">New user Sign up</p>
+					</a>
+				</div>
+				<div class="col-4 text-center">
+					<a style="text-decoration: none; color: black;" target="_blank">
+						<img src="https://i.ibb.co/6tzTCCp/n3.png" class="img-fluid" width="30px">
+						<p class="text-white">Get rewards</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container mb-4 bg-black border cont3" style="border-radius: 10px;">
+			<div class="row pt-3 pb-3 ps-3 pe-0" style="font-size: 13px;">
+				<div class="col-xxl text-center mb-3" style="color: white;">
+					Choose way for share
+				</div>
+				<div class="col-3 text-center">
+					<a href="<%= k4?.store_link.twitter %>" target="_blank" style="text-decoration: none; color: black;" class="text-center">
+						<!-- <img src="https://i.ibb.co/hDm4vzM/twitter.jpg" class="img-fluid" width="30px"> -->
+						<i class="fa-brands fa-square-x-twitter fa-2xl" style="color: #1da1f2;"></i>
+						<p class="text1" style="color: white;">Twitter</p>
+					</a>
+				</div>
+				<div class="col-3 text-center">
+					<a href="<%= k4?.store_link.facebook %>" target="_blank" style="text-decoration: none; color: black;" class="text-center">
+						<!-- <img src="https://i.ibb.co/N90CWqj/facebook.jpg" class="img-fluid" width="30px"> -->
+						<i class="fa-brands fa-facebook fa-2xl" style="color: #316FF6;"></i>
+						<p class="text1" style="color: white;">Facebook</p>
+					</a>
+				</div>
+				<div class="col-3 text-center">
+					<a href="https://telegram.me/share/url?url=cryptoinmi.click&text=Visit CryptoInMi to earn money" target="_blank" style="text-decoration: none; color: black;" class="text-center">
+						<!-- <img src="https://i.ibb.co/Zdd8Q24/telegram.jpg" class="img-fluid" width="30px"> -->
+						<i class="fa-brands fa-telegram fa-2xl" style="color: #24A1DE;"></i>
+						<p class="text1" style="color: white;">Telegram</p>
+					</a>
+				</div>
+				<div class="col-3 text-center">
+					<a href="<%= k4?.store_link.whatsapp %>" target="_blank" style="text-decoration: none; color: black;" class="text-center">
+						<!-- <img src="https://i.ibb.co/THYPg3B/whatsapp.jpg" class="img-fluid" width="30px"> -->
+						<i class="fa-brands fa-square-whatsapp fa-2xl" style="color: #25D366;"></i>
+						<p class="text1" style="color: white;">Whatsapp</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container" style="height: 70px;"></div>
+	</section>
+
+	<footer>
+		<%- include('./includes/footer.ejs', { name: 'team1' }) %>
+	</footer>
+
+	<script>
+		const btn = globalThis.document.querySelector('.btn');
+
+		function copyText() {
+			globalThis.navigator.clipboard.writeText(btn.value);
+		}
+
+        window.addEventListener('load', function () {
+            // console.log("hii...");
+            // Get the loading spinner element
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            // Hide the loading spinner
+            loadingSpinner.style.display = 'none';
+        });
+    </script>
+
+    <script>
+    	function changeIconColor(element) {
+            // Remove 'activeNav' class from all links
+            sdocument.querySelectorAll('.nav-link i').forEach(icon => {
+                icon.style.color = '#ffffff';
+            });
+            document.querySelectorAll('.nav-link span').forEach(text => {
+                text.style.color = 'white';
+            });
+
+            // Set the clicked icon and text to green
+            let icon = link.querySelector('i');
+            icon.style.color = '#7CFC00';
+
+            let text = link.querySelector('span');
+            text.style.color = '#7CFC00';
+        }
+    </script>
+
+<%- include('./includes/end.ejs') %>

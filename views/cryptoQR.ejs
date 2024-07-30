@@ -1,0 +1,153 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/style1.css">
+<link rel="stylesheet" href="/payment.css">
+
+<body class="bg-black">
+  <style>
+    @media (max-width: 2500px) {
+      #payImg1 {
+        width: 300px;
+        height: 300px;
+      }
+    }
+    @media (max-width: 500px) {
+      #pay1 {
+        margin-left: 12px;
+      }
+      #payImg1 {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  </style>
+
+  <header class="header">
+      <div class="header-inner">
+        <div class="container-fluid">
+          <nav class="navbar bg-black fixed-top">
+            <div class="container-fluid mb-1 justify-content-center display-6">
+              <b style="background: linear-gradient(to top, #7CFC00, #008000);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-family: 'Ubuntu'"
+              >
+                QR
+              </b>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+  <div class="loading-spinner" id="loadingSpinner">
+    <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+    <div class="spinner"></div>
+  </div>
+
+  <section>
+    <div class="container p-2" id="pay1">
+      <div class="row justify-content-center" style="margin-top: 70px;">
+        <div class="col-12 col-md-3"></div>
+        <div class="col-12 col-md-6 text-white border p-3" style="border-radius: 20px;">
+          <h5>Pay with <span class="text-uppercase"><%= currency %></span></h5>
+          <p>To complete this payment send exactly this amount to the address provided.</p>
+          <div class="bg-secondary text-white d-flex justify-content-between align-items-center mt-2 mb-3 p-3" style="border-radius: 5px;">
+            <div class="text-uppercase"><%= currency %></div>
+            <div><%= amount %></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-3 p-3" style=" border-radius: 5px;">
+            <div>Amount</div>
+            <div><%= cAmt %> <span class="text-uppercase">usd</span></div>
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-center mb-3">
+            <img id="payImg1" />
+            <p class="mt-3">Only send <span class="text-uppercase"><%= currency %></span> to this address</p>
+          </div>
+          <div class="border p-1 bg-light mb-3" style="border-radius: 25px; color: black;">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-10 border-0 text-center">
+                <div class="text-break" style="overflow: hidden;"><%= address %></div>
+              </div>
+              <div class="col-2 p-0 border-0 text-end" style="border-left: 2px solid black;">
+                <button class="copy-button border-0">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <a href="/user/recharge" class="btn bg-light text-uppercase p-2 w-100 text-center" style="text-decoration: none; color: black; border-radius: 20px;">Continue</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="height: 100px;"></div>
+  </section>
+
+  <footer>
+    <%- include('./includes/footer.ejs', { name: 'account1' }) %>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function () {
+        // Get the loading spinner element
+        const loadingSpinner = document.getElementById('loadingSpinner');
+          
+        // Hide the loading spinner
+        loadingSpinner.style.display = 'none';
+      });
+  </script>
+
+  <script>
+    const iSRC = '<%- JSON.stringify(iSrc) %>';
+  </script>
+
+  <script type="text/javascript">
+    globalThis.document.addEventListener('DOMContentLoaded', () => {
+      const payImg2 = JSON.parse(iSRC);
+
+      const payImg1 = globalThis.document.getElementById("payImg1");
+
+      payImg1.setAttribute("src", payImg2);
+
+      // console.log(payImg1, payImg2);
+
+      const copyButtons = document.querySelectorAll('.copy-button');
+
+      copyButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const textToCopy = button.parentElement.previousElementSibling.firstElementChild.innerText;
+
+            try {
+              await navigator.clipboard.writeText(textToCopy);
+              alert('Address copied to clipboard!');
+            } catch (err) {
+              console.error('Failed to copy:', err);
+            }
+        });
+      });
+
+      function changeIconColor(element) {
+        // Remove 'activeNav' class from all links
+        sdocument.querySelectorAll('.nav-link i').forEach(icon => {
+          icon.style.color = '#ffffff';
+        });
+
+        document.querySelectorAll('.nav-link span').forEach(text => {
+          text.style.color = 'white';
+        });
+
+        // Set the clicked icon and text to green
+        let icon = link.querySelector('i');
+        icon.style.color = '#7CFC00';
+
+        let text = link.querySelector('span');
+        text.style.color = '#7CFC00';
+      }
+    })
+  </script>
+
+<%- include('./includes/end.ejs') %>

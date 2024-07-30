@@ -1,0 +1,39 @@
+<%- include("./includes/head.ejs"); %>
+
+<link rel="stylesheet" href="/style.css">
+
+<body>
+	<header></header>
+
+	<div class="loading-spinner" id="loadingSpinner">
+	    <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+	    <div class="spinner"></div>
+	</div>
+
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<img src="images/about2.png" width="30" height="40" />
+					<h3>home...</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer></footer>
+
+	<script>
+		window.addEventListener('load', function () {
+	      // console.log("hii...");
+	      // Get the loading spinner element
+	      const loadingSpinner = document.getElementById('loadingSpinner');
+	        
+	      // Hide the loading spinner
+	      loadingSpinner.style.display = 'none';
+	    });
+	</script>
+
+<%- include("./includes/end.ejs"); %>
+
+</body>

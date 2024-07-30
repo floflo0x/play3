@@ -1,0 +1,246 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/style1.css">
+<link rel="stylesheet" href="/withdraw.css">
+
+<body class="bg-black">
+
+		<header class="header">
+    	<div class="header-inner">
+    	  <div class="container-fluid">
+    	    <nav class="navbar bg-black fixed-top">
+    	    <div class="container-fluid mb-1 justify-content-center display-6">
+    	    	<b style="background: linear-gradient(to top, #7CFC00, #008000);
+	            	-webkit-background-clip: text;
+	            	-webkit-text-fill-color: transparent;
+	            	font-family: 'Ubuntu'"
+	            >Withdraw</b>
+    	    </div>
+    	  </nav>
+    	  </div>
+    	</div>
+  	</header>
+
+  	<div class="loading-spinner" id="loadingSpinner">
+	    <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+	    <div class="spinner"></div>
+		</div>
+
+  	<section>
+  		<div class="container">
+  			<div class="row" style="height: 365px; margin-top: 70px; ">
+  				<div class="col-xxl text-center">
+  					<img src="https://i.ibb.co/SnBjJTW/bg1-finance.png" class="img-fluid" width="350px">
+  				</div>
+  				<div class="col-xxl mt-1 align-self-center text-white cont1">
+  					<p>Withdrawal to: USDT(TRC20)</p>
+  				</div>
+  			</div>
+  		</div>
+  	</section>
+
+  	<section>
+  		<div class="container mb-2 bg-light hr1" style="height: 15px;"></div>
+  	</section>
+
+  	<section>
+  		<div class="container">
+  			<div class="row justify-content-center" style="font-size: 15px;">
+  				<div class="col-xxl text-end text-white cont2">
+  					<p>Withdrawal amount: $<%= wAmt %></p>
+  				</div>
+  				<div class="col-xxl">
+  					<form action="/user/withdrawal" method="POST" id="form">
+  						<div class="mb-1" style="border-bottom: 1px solid gray;">
+  							<input type="text" class="form-control border-0" name="amount" id="amount" min="<%= accBBB%>" placeholder="Please enter the withdrawal amount $" value="<%= oldInput.amount %>" required>
+						</div>
+  						<div style="color: white;">
+  							<p id="account_balance">Account balance: $<%= accBBB %></p>
+  							<div>
+  								<table class="table table-borderless table-sm">
+  									<tbody>
+  										<tr style="color: white;">
+  											<td>Cost</td>
+  											<td style="text-align: right;">(3%Fee)</td>
+  										</tr>
+  										<tr style="color: white;">
+  											<td>Estimated arrival time</td>
+  											<td style="text-align: right;">within 24-48 hours</td>
+  										</tr>
+  									</tbody>
+  								</table>
+  							</div>
+  						</div>
+  				</div>
+  			</div>
+  		</div>
+  	</section>
+
+  	<section>
+  		<div class="container mb-2 bg-light hr2" style="height: 15px;"></div>
+  	</section>
+
+  	<section>
+  		<div class="container mb-2">
+  			<div class="row justify-content-center">
+  					<div class="col-xxl mb-3">
+  						<div class="form-check">
+  							<input class="form-check-input" type="radio" name="mode" id="flexRadioDefault1" value="USDT(TRC20)" <% (oldInput.mode == 'USDT(TRC20)') ? 'checked' : '' %> checked>
+  							<label class="form-check-label text-white" for="flexRadioDefault1">
+  						  USDT(TRC20)
+  							</label>
+						</div>
+						<div class="form-check">
+  							<input class="form-check-input" type="radio" name="mode" id="flexRadioDefault2" value="BTC" <% (oldInput.mode == 'BTC') ? 'checked' : '' %>>
+  							<label class="form-check-label text-white" for="flexRadioDefault2">
+  						  BTC
+  							</label>
+						</div>
+  					</div>
+  					<div class="col-xxl">
+  						<div class="mb-3" style="border-bottom: 1px solid gray;">
+    						<input type="text" class="form-control border-0" name="address" placeholder="Place your USDT(TRC20) wallet address" value="<%= oldInput.address %>">
+  						</div>
+  						<!-- change btn's bg-color -->
+  						<button type="submit" id="button" class="btn form-control" style="background-color: #7CFC00; color: black; font-weight: bold;">Immediate withdrawal</button>
+  					</div>
+  				</form>
+  			</div>
+  		</div>
+  	</section>
+
+  	<section>
+  		<div class="container mb-2">
+  			<div class="row justify-content-center">
+  				<div class="col-xxl mb-1 text-white">
+  					Withdrawal Instructions:
+  				</div>
+  				<div class="col-xxl text-white" style="font-size: 15px;">
+  					<p>
+  						<b style="font-size: 16px;">1:</b>
+  						The withdrawal application time is limited to 9:00-18:00 (According to user local time) every day from Monday to Friday, and can't be applied for withdrawal on Saturday and Sunday. <br>
+  						<b style="font-size: 16px;">2:</b>
+  						Minimum withdrawal amount is set according to your account balance <br>
+  						<b style="font-size: 16px;">3:</b>
+  						A fee will be charged for each withdrawal. <br>
+  						<b style="font-size: 16px;">4:</b>
+  						After the application is successfully withdrawn, it will be transferred by financial review within 24-48 hours.
+  					</p>
+  				</div>
+  				<% if (z.length >= 1) { %>
+	  				<div class="col-xxl text-white">
+	  					<p>Withdrawal History:</p>
+	  					<table class="table table-borderless table-sm">
+	  						<thead style="background-image: linear-gradient(to right, #a17ce1, #2196f3);">
+									<tr>
+	      								<th scope="col">Time</th>
+	      								<th scope="col">Money($)</th>
+	      								<th scope="col">State</th>
+	    							</tr>
+	  						</thead>
+
+	  						<!-- Add Data here -->
+	  						<tbody>
+								<% for(let i = z.length-1; i >= 0; i--) { %>
+									<tr>
+										<td style="color: white;" id="withDate"><%= z[i].date %></td>
+										<td style="color: white;">$<%= z[i].amount == 'NaN'? '0' : z[i].amount %></td>
+										<td style="color: white;"><%= z[i].status %></td>
+									</tr>
+								<% } %>
+	  						</tbody>
+
+	  					</table>
+	  				</div>
+	  			<%} %>
+  			</div>
+  		</div>
+  	</section>
+
+  	<section>
+  		<div class="container" style="height: 100px;"></div>
+  	</section>
+
+	  <footer>
+			<%- include('./includes/footer.ejs', { name: 'account1' }) %>
+		</footer>
+
+	<script>
+		let x = '<%= accBBB%>';
+		let y = '<%= wAmt%>';
+
+		window.addEventListener('load', function () {
+	      // console.log("hii...");
+	      // Get the loading spinner element
+	      const loadingSpinner = document.getElementById('loadingSpinner');
+	        
+	      // Hide the loading spinner
+	      loadingSpinner.style.display = 'none';
+	    });
+	</script>
+
+	<script>
+		globalThis.document.addEventListener('DOMContentLoaded', () => {
+		    const form = globalThis.document.getElementById("form");
+
+		    const withDate = globalThis.document.getElementById("withDate");
+
+		    const d1 = withDate.textContent.split('/');
+		    // console.log(d1);
+
+		    const d2 = d1[1] + "/" + d1[0] + "/" + d1[2];
+		    // console.log(d2);
+
+			form.addEventListener('submit', (e) => {
+		      	e.preventDefault();
+
+		      	// console.log(e.target.amount.value);
+		      	// console.log(e.target.address.value);
+
+		      	const amount = parseFloat(e.target.amount.value.trim(''));
+		      	const address = e.target.address.value.trim('');
+
+		      	// console.log(amount, address, x, y, amount >= parseFloat(y) && amount > parseFloat(x));
+
+		      	if (amount >= parseFloat(y) && amount > parseFloat(x)) {
+		      		e.submit();
+		      	}
+		      	else {
+		      		alert("Invalid amount...");
+		      	}
+		    })
+
+		    function getMonthName(month) {
+              const months = [
+                "January", "February", "March", "April",
+                "May", "June", "July", "August",
+                "September", "October", "November", "December"
+              ];
+
+              return months[month];
+            }
+
+            function addOrdinalIndicator(day) {
+              const suffixes = ["th", "st", "nd", "rd"];
+              const relevantDigits = (day < 30) ? day % 20 : day % 30;
+              const suffix = (relevantDigits <= 3 && relevantDigits > 0) ? suffixes[relevantDigits] : suffixes[0];
+
+              return `${day}${suffix}`;
+            }
+
+            function formatDate(dateString) {
+              const date = new Date(dateString);
+              const day = date.getDate();
+              const month = getMonthName(date.getMonth());
+              const year = date.getFullYear();
+
+              const formattedDay = addOrdinalIndicator(day);
+
+              return `${formattedDay} ${month} ${year}`;
+            }
+
+            withDate.textContent = formatDate(d2);
+		})
+	</script>
+
+<%- include('./includes/end.ejs') %>

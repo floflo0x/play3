@@ -1,0 +1,141 @@
+  @import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
+
+* {
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: 'Onest', sans-serif;
+  background-image: url('');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#subForm {
+  border: 1px solid grey;
+  border-radius: 20px;
+}
+
+form div.mb-3:last-child {
+  margin-top: 25px;
+  text-align: center;
+}
+
+button {
+  width: 120px;
+}
+
+.alert-danger {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+#button-container {
+  background-color: black;
+  padding: 10px; /* Optional: Add padding to adjust the size of the blue background */
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+#button-container button {
+  border: none;
+  background: black;
+  color: white;
+}
+
+.loading-spinner {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoSp {
+  display: block;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+.forgetLink a {
+  color: grey;
+  transition: all 0.3s;
+}
+
+.forgetLink a:hover {
+  color: #07abe5;
+  font-size: 16px;
+}
+
+/*.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+} */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.reg_link {
+  text-decoration: none;
+  color: grey;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+
+.reg_link:hover {
+  color: #07abe5;
+  font-size: 16px;
+}
+
+option {
+  background-color: black;
+  color: white;
+}
+
+@media (max-width: 500px) {
+  #subForm, .alert_class {
+    border: none;
+    margin-left: 23px;
+  }
+
+  form div.mb-3:first-child {
+    margin-top: 35px;
+  }
+
+  form div.mb-3:last-child {
+    margin-top: 0;
+  }
+
+  button {
+    padding: 0;
+    width: 100%;
+  }
+
+  .ftBtn {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  form div.mb-3:first-child {
+    margin-top: 30px;
+  }
+}

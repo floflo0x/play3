@@ -1,0 +1,165 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/style1.css">
+<link rel="stylesheet" href="/buy_vip.css">
+
+<body class="bg-black">
+    <style>
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            text-decoration: none;
+            color: #7CFC00;
+        }
+
+        .nav-link:hover i {
+            color: #7CFC00;
+        }
+
+        .nav-link:hover span {
+            color: #7CFC00 !important;
+        }
+
+        .nav-link .activeNav {
+            color: #7CFC00 !important;
+        }
+    </style>
+
+    <div class="loading-spinner" id="loadingSpinner">
+        <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container p-2 bg-light firstCont" style="border-radius: 10px;">
+        <div class="row justify-content-center">
+            <div class="col-xxl text-center mb-1" style="font-size: 20px; color: #FFBF00;">
+                <b><%= x.level_name.toUpperCase() %></b>
+            </div>
+            <div class="col-xxl mb-2">
+                <p class="lname text-center" style="font-weight: bold; font-size: 18px; color: #008000; font-family: 'Ubuntu';">Buy <%= x.level_name.toUpperCase() %></p>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: left; font-family: 'Poppins';">Price</td>
+                            <td style="text-align: start; font-weight: bold; font-family: 'Poppins';">$<%= x.level_price %></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; font-family: 'Poppins';">Machine Profit</td>
+                            <td style="text-align: start; font-weight: bold; font-family: 'Poppins';">$<%= x.machine_profit %></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; font-family: 'Poppins';">Machine Quantity</td>
+                            <td style="text-align: start; font-weight: bold; font-family: 'Poppins';"><%= x.machine_quantity %></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; font-family: 'Poppins';">Min balance(Cash pledge)</td>
+                            <td style="text-align: start; font-weight: bold; font-family: 'Poppins';">$<%= x.min_balance %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xxl text-center mb-2 buyBtn">
+                <a href="<%= accBal < price  ? 'javascript:void(0)' : '#' %>" class="btn p-1 form-control bolder-0" style="background-color: #7CFC00; color: #1B1212; text-decoration: none; font-weight: bold; font-family: 'Ubuntu';">BUY</a>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="alertShow p-3">
+            <h3 style="font-family: 'Poppins'; color: red; font-weight: bold;">Insufficient Balance</h3>
+            <p style="font-family: 'Poppins';">Please deposit some amount to continue...</p>
+            <div class="border-0" style="display: flex; justify-content: space-between; align-items: center font-family: 'Poppins';">
+                <button type="button" class="btn close border-0" style="color: #40E0D0; text-transform: uppercase; font-weight: bold; font-size: 14px; font-family: 'Poppins';">Close</button>
+                <a href="#" style="cursor: pointer; text-decoration: none; color: #7CFC00; text-transform: uppercase; font-size: 14px; font-family: 'Ubuntu';"><b>DEPOSIT</b></a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="alertShow1 p-3">
+            <h3 style="font-family: 'Poppins'; color: #FFD700;">Buy Vip level</h3>
+            <p class="mt-4" style="font-family: 'Poppins';">Are you confirmed to buy this level?</p>
+            <div class="border-0" style="display: flex; justify-content: space-between; align-items: center">
+                <button type="button" class="btn close1 border-0" style="color: #40E0D0; text-transform: uppercase; font-weight: bold; font-size: 14px; font-family: 'Poppins';">Cancel</button>
+                <a href="/user/yesConfirm/<%= x.level_name %>" style="cursor: pointer; text-decoration: none; color: #7CFC00; text-transform: uppercase; font-size: 14px; font-family: 'Ubuntu';"><b>Yes Confirmed</b></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <%- include('./includes/footer.ejs', { name: 'vip1' }) %>
+    </footer>
+
+    <script>
+        let level = '<%= x.level_name %>';
+
+        window.addEventListener('load', function () {
+            // console.log("hii...");
+            // Get the loading spinner element
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            // Hide the loading spinner
+            loadingSpinner.style.display = 'none';
+        });
+    </script>
+
+    <script>
+        const button = globalThis.document.querySelector('.btn');
+        const popup = globalThis.document.querySelector('.popup-wrapper');
+
+        const close = globalThis.document.querySelector('.close');
+        const alertShow = globalThis.document.querySelector('.alertShow');
+        const close1 = globalThis.document.querySelector('.close1');
+        const alertShow1 = globalThis.document.querySelector('.alertShow1');
+
+        if(level == 'Free VIP') {
+            button.setAttribute('href', 'javascript:void(0)');
+        }
+
+        if(button.getAttribute('href') == '#') {
+            button.addEventListener('click', () => {
+                alertShow1.style.display = 'block';
+                alertShow.style.display = 'none';
+            });
+        }
+        else {
+            button.addEventListener('click', () => {
+                alertShow.style.display = 'block';
+                alertShow1.style.display = 'none';
+            });
+        }
+
+        close1.addEventListener('click', () => {
+            alertShow1.style.display = "none";
+            alertShow.style.display = "none";
+        })
+
+        close.addEventListener('click', () => {
+            alertShow.style.display = "none";
+            alertShow1.style.display = "none";
+        })
+
+        function changeIconColor(element) {
+            // Remove 'activeNav' class from all links
+            sdocument.querySelectorAll('.nav-link i').forEach(icon => {
+                icon.style.color = '#ffffff';
+            });
+            document.querySelectorAll('.nav-link span').forEach(text => {
+                text.style.color = 'white';
+            });
+
+            // Set the clicked icon and text to green
+            let icon = link.querySelector('i');
+            icon.style.color = '#7CFC00';
+
+            let text = link.querySelector('span');
+            text.style.color = '#7CFC00';
+        }
+    </script>
+
+<%- include('./includes/end.ejs') %>

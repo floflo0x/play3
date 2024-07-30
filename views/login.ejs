@@ -1,0 +1,106 @@
+<%- include("./includes/head.ejs"); %>
+
+<link rel="stylesheet" href="/style.css">
+
+<body class="bg-black">
+	<header></header>
+
+	<div class="loading-spinner" id="loadingSpinner">
+	    <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+	    <div class="spinner"></div>
+	</div>
+
+	<section>
+		<div class="container-fluid border-0 p-0 mt-5">
+			<div class="row justify-content-center">
+		        <div class="col-12 text-center">
+		          	<% if(errorMessage) { %>
+		            	<div class="alert alert-danger" role="alert"><%= errorMessage %></div>
+		          	<% } %>
+		        </div>
+
+				<div class="col-12 col-md-3"></div>
+
+				<div class="col-12 col-md-6 p-4" id="subForm">
+            		<!-- <h4 class="text-center">Sign In</h4> -->
+
+            		<div class="text-center mb-2">
+            			<img src="./user5.png" width="100" height="100" />
+            		</div>
+
+					<form action="/login" method="POST" novalidate>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label text-white">Email address</label>
+					    <input 
+					    	type="email" 
+					    	class="form-control" 
+					    	name="email" 
+					    	id="exampleInputEmail1" 
+					    	aria-describedby="emailHelp"
+                            value="<%= oldInput.email %>" 
+                            style="background-color: transparent; color: white;"
+					    	required
+					    >
+					    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputPassword1" class="form-label text-white">Password</label>
+					    <input 
+					    	type="password" 
+					    	class="form-control" 
+					    	name="password" 
+					    	id="exampleInputPassword1" 
+					    	style="background-color: transparent; color: white;"
+					    	required
+					    >
+					  </div>
+					  <div class="mb-4 d-flex justify-content-between">
+		                <div class="form-check">
+		                  <input type="checkbox" name="rememberMe" class="form-check-input" id="exampleCheck1">
+		                  <label class="form-check-label" for="exampleCheck1" style="color: grey;">Remember Me</label>
+		                </div>
+		                <div class="forgetLink">
+		                  <a href="#" style="text-decoration: none;">
+		                  	Forget Password
+		                  </a>
+		                </div>
+		              </div>
+					  <div class="mb-3">
+					  	<button type="submit" class="btn border-0" 
+					  		style="background: linear-gradient(to right, #07abe5, #13f2d2);
+					  		font-weight: 700; color: white;"
+					  	>SIGN IN</button>
+					  </div>
+					</form>
+
+					<div class="text-center mt-3 text-white"> 
+		              <p>
+		                Don't have an account?
+		                <a href="/register" class="reg_link">
+		                  Create One
+		                </a>
+		              </p>
+		            </div>
+				</div>
+
+				<div class="col-12 col-md-3"></div>
+			</div>
+		</div>
+	</section>
+
+	<footer></footer>
+
+	<script>
+		window.addEventListener('load', function () {
+	      // console.log("hii...");
+	      // Get the loading spinner element
+	      const loadingSpinner = document.getElementById('loadingSpinner');
+	        
+	      // Hide the loading spinner
+	      loadingSpinner.style.display = 'none';
+	    });
+	</script>
+
+<%- include("./includes/end.ejs"); %>
+
+</body>

@@ -1,0 +1,229 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/finance.css">
+
+<link rel="stylesheet" href="/home.css">
+
+<body class="bg-black">
+
+	<style>
+		.content {
+			display: none;
+		}
+		.content.active {
+			display: inline-flex;
+		}
+
+		#carouselExampleAutoplaying .carousel-item img {
+	        object-fit: contain;
+	        height: 100%; /* Ensures images fill the entire height of the carousel item */
+	        width: 100%; /* Ensures images fill the entire width of the carousel item */
+	        transform: scale(1.35);
+	    }
+
+	    /* Optional: Adjust carousel height */
+	    .carousel-item {
+	        height: 600px; /* Set a fixed height for all carousel items (adjust as needed) */
+	    }
+
+	    .nav-link {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            text-decoration: none;
+            color: #7CFC00;
+        }
+
+        .nav-link:hover i {
+		    color: #7CFC00;
+		}
+
+		.nav-link:hover span {
+		    color: #7CFC00 !important;
+		}
+
+        .nav-link .activeNav {
+            color: #7CFC00 !important;
+        }
+	</style>
+
+	<header class="header">
+		<div class="header-inner">
+			<div class="container-fluid">
+				<nav class="navbar bg-black fixed-top">
+				<div class="container-fluid mb-1 justify-content-center display-6">
+					<b style="background: linear-gradient(to top, #7CFC00, #008000);
+            			-webkit-background-clip: text;
+            			-webkit-text-fill-color: transparent;
+            			font-family: 'Ubuntu'"
+            		>Finance</b>
+				</div>
+			</nav>
+			</div>
+		</div>
+	</header>
+
+	<div class="loading-spinner" id="loadingSpinner">
+	    <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+	    <div class="spinner"></div>
+	</div>
+
+	<section>
+		<div class="container text-center" style="margin-top: 70px;">
+			<article class="about">
+				<div class="row justify-content-center" style="background: #50C878;">
+					<div class="col-6">
+						<button class="tab-btn border-0 p-2" style="background: transparent; color: white;" data-id="products">Products</button>
+					</div>
+					<div class="col-6" style="background-color: #023020; color: white;">
+						<button class="tab-btn border-0 p-2" style="background: transparent; color: #ffbf00; font-weight: bold;" data-id="myFunds">My Funds</button>
+					</div>
+				</div>
+		</div>
+	</section>
+
+	<section>
+			<div class="container mb-3">
+				<article class="about-content">
+					<div class="row justify-content-center mb-2 content active" id="products" style="padding: 2%;">
+						<% x.forEach(i => { %>
+							<div class="col-xxl">
+								<table class="table table-borderless">
+									<tbody>
+									<tr>
+											<td style="color: #E4D00A;"><%= i?.title.toUpperCase() %></td>
+										</tr>
+										<tr>
+											<td class="border-0" rowspan="3">
+												<img src=<%= i?.image_url %> class="img-fluid fImg">
+											</td>
+											<td style="color: white;">Daily rate</td>
+											<td style="text-align: right; color: white;"><%= i?.daily_rate %>%</td>
+										</tr>
+										<tr>
+											<td style="color: white;">Min invest</td>
+											<td style="text-align: right; color: white;">$<%= i?.min_invest %></td>
+										</tr>
+										<tr>
+											<td style="color: white;">Duration</td>
+											<td style="text-align: right; color: white;"><%= i?.duration %> day</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-6 text-center" style="background-color: #4F7942;">
+								<a class="btn" style="text-decoration: none; color: white;">Min invest: $<%= i?.min_invest %></a>
+							</div>
+							<div class="col-6 d-flex justify-content-center align-items-center" style="background-color: #7CFC00;">
+								<a href="/user/financial/<%= i?.p_id %>" class="btn w-100" style="text-decoration: none; color: blue; font-weight: bold;">View</a>
+							</div>
+						<% }) %>
+					</div>
+
+					<div class="row justify-content-center mb-2 content" id="myFunds" style="width: 100%">
+						<% if(z1) { %>
+							<% z1.forEach((i, index) => { %>
+                                <div class="col-xxl">
+									<table class="table table-borderless">
+										<tbody>
+											<tr>
+													<td style="color: skyblue">
+														<%= i.product_name %>
+													</td>
+											</tr>
+											<tr>
+													<td rowspan="3"><img src="<%= imgUrl[index].img %>" class="img-fluid" width="100px"></td>
+
+													<td style="color: white;">Daily rate</td>
+
+													<td style="text-align: right; color: white;"><%= i.daily_rate %>%</td>
+											</tr>
+											<tr>
+													<td style="color: white;">Min invest</td>
+													<td style="text-align: right; color: white;">$<%= i.min_invest %></td>
+											</tr>
+											<tr>
+												<td style="color: white;">Duration</td>
+												<td style="text-align: right; color: white;"><%= i.duration %> day</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-6 text-center" style="background-color: skyblue;">
+									<a class="btn" style="text-decoration: none; color: darkblue;">Min invest: $<%= i.min_invest %></a>
+								</div>
+								<div class="col-6 text-center" style="background-color: darkblue;">
+									<a href="javascript:void(0);" class="btn" style="text-decoration: none; color: white;">View</a>
+								</div>
+							<% }) %>
+						<% } %>
+					</div>
+				</article>
+			</div>
+		</article>
+	</section>
+
+	<section>
+		<div class="container" style="height: 80px;"></div>
+	</section>
+
+	<footer>
+		<%- include('./includes/footer.ejs', { name: 'finance1' }) %>
+	</footer>
+
+	<script>
+		window.addEventListener('load', function () {
+	      // console.log("hii...");
+	      // Get the loading spinner element
+	      const loadingSpinner = document.getElementById('loadingSpinner');
+	        
+	      // Hide the loading spinner
+	      loadingSpinner.style.display = 'none';
+	    });
+	</script>
+
+	<script>
+		const btns = globalThis.document.querySelectorAll(".tab-btn");
+		const about = globalThis.document.querySelector(".about");
+		const articles = globalThis.document.querySelectorAll(".content");
+
+		about.addEventListener("click", (e) => {
+			const id = e.target.dataset.id;
+			if (id) {
+				btns.forEach(btn => {
+					e.target.style.color = 'white';
+					//btn.classList.remove('text-primary');
+					//e.target.classList.add('text-primary');
+				})
+
+				articles.forEach(article => {
+					article.classList.remove('active');
+				})
+				const element = globalThis.document.getElementById(id);
+				element.classList.add('active');
+			}
+		})
+
+		function changeIconColor(element) {
+	        // Remove 'activeNav' class from all links
+	        sdocument.querySelectorAll('.nav-link i').forEach(icon => {
+		        icon.style.color = '#ffffff';
+		    });
+		    document.querySelectorAll('.nav-link span').forEach(text => {
+		        text.style.color = 'white';
+		    });
+
+		    // Set the clicked icon and text to green
+		    let icon = link.querySelector('i');
+		    icon.style.color = '#7CFC00';
+
+		    let text = link.querySelector('span');
+		    text.style.color = '#7CFC00';
+		}
+	</script>
+
+<%- include('./includes/end.ejs') %>

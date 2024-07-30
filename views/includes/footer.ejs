@@ -1,0 +1,31 @@
+<div class="container-fluid">
+			<nav class="navbar fixed-bottom bg-black text-white">
+				<div class="container-xxl mb-1">
+					<a class="nav-link text-center" aria-current="page" href="/user/home" onclick="changeIconColor(this)">
+						<i class="fa-solid fa-house fa-xl <%= name === 'home1' ? 'activeNav' : '' %>" style="color: #fffff;"></i>
+						<br />
+						<span class="<%= name === 'home1' ? 'activeNav' : '' %> ftBtn" style="font-size: 14px; color: white; font-family: 'Poppins';">Home</span>
+					</a>
+					<a class="nav-link text-center" href="/user/finance" onclick="changeIconColor(this)">
+						<i class="fa-solid fa-coins fa-xl <%= name === 'finance1' ? 'activeNav' : '' %>" style="color: #fffff;"></i>
+						<br />
+						<span class="<%= name === 'finance1' ? 'activeNav' : '' %> ftBtn" style="font-size: 14px; color: white; font-family: 'Poppins';">Finance</span>
+					</a>
+					<a class="nav-link text-center" href="/user/vip" onclick="changeIconColor(this)">
+						<i class="fa-solid fa-gem fa-xl <%= name === 'vip1' ? 'activeNav' : '' %>" style="color: #fffff;"></i>
+						<br />
+						<span class="<%= name === 'vip1' ? 'activeNav' : '' %> ftBtn" style="font-size: 14px; color: white; font-family: 'Poppins';">Vip</span>
+					</a>
+					<a class="nav-link text-center" href="/user/team" onclick="changeIconColor(this)">
+						<i class="fa-solid fa-user-group fa-xl <%= name === 'team1' ? 'activeNav' : '' %>" style="color: #fffff;"></i>
+						<br />
+						<span class="<%= name === 'team1' ? 'activeNav' : '' %> ftBtn" style="font-size: 14px; color: white; font-family: 'Poppins';">Team</span>
+					</a>
+					<a class="nav-link text-center" href="/user/account" onclick="changeIconColor(this)">
+						<i class="fa-solid fa-face-smile fa-xl <%= name === 'account1' ? 'activeNav' : '' %>" style="color: #fffff;"></i>
+						<br />
+						<span class="<%= name === 'account1' ? 'activeNav' : '' %> ftBtn" style="font-size: 14px; color: white; font-family: 'Poppins';">Account</span>
+					</a>
+				</div>
+			</nav>
+		</div>

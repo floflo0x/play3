@@ -1,0 +1,176 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/style1.css">
+<link rel="stylesheet" href="/vip.css">
+
+<body class="bg-black">
+	<style></style>
+
+	<header class="header">
+    	<div class="header-inner">
+    	  <div class="container-fluid">
+    	    <nav class="navbar bg-black fixed-top">
+    	    	<div class="container-fluid mb-1 justify-content-center display-6">
+    	      		<b style="background: linear-gradient(to top, #7CFC00, #008000);
+            			-webkit-background-clip: text;
+            			-webkit-text-fill-color: transparent;
+            			font-family: 'Ubuntu'"
+            		>VIP</b>
+    	    	</div>
+    	  	</nav>
+    	  </div>
+    	</div>
+  	</header>
+
+  	<div class="loading-spinner" id="loadingSpinner">
+        <img src="https://i.ibb.co/PTLFqC0/cube.png" alt="Your Logo" class="logoSp">
+        <div class="spinner"></div>
+    </div>
+
+  	<section>
+    	<div class="container mb-2 firstCont">
+    	  <div class="row" style="background-image: linear-gradient(to right, #a17ce1, #2196f3); border-radius: 20px;">
+    	    <div class="col-xxl">
+    	      <table class="table table-borderless">
+    	      	<tbody style="font-size: 13px; color: white;">
+    	      		<tr>
+    	      			<td style="text-align: left; font-family: 'Poppins'; font-weight: bold;">Current level</td>
+    	      			<td style="text-align: right; font-family: 'Poppins'; font-weight: bold;">Machine quantity</td>
+    	      		</tr>
+    	      		<tr>
+    	      			<td style="text-align: left; font-family: 'Poppins';" id="level_name"><%= z1.level_name.toUpperCase() %></td>
+    	      			<td style="text-align: right; font-family: 'Poppins';"><%= z1.machine_quantity %></td>
+    	      		</tr>
+    	      		<tr>
+    	      			<td style="text-align: left; font-family: 'Poppins'; font-weight: bold;">Daily income</td>
+    	      			<td style="text-align: right; font-family: 'Poppins'; font-weight: bold;">Machine profit</td>
+    	      		</tr>
+    	      		<tr>
+    	      			<td style="text-align: left; font-family: 'Poppins';">$<%= z1.level_income %></td>
+    	      			<td style="text-align: right; font-family: 'Poppins';">$<%= z1.machine_profit %></td>
+    	      		</tr>
+    	      		<tr>
+    	      			<td style="text-align: left; font-family: 'Poppins'; font-weight: bold;">Min balance(Cash plede)</td>
+    	      			<td style="text-align: right; font-family: 'Poppins'; font-weight: bold;">Withdrawal amount</td>
+    	      		</tr>
+    	      		<tr>
+    	      			<td style="text-align: left; font-family: 'Poppins';">$<%= z1.min_balance %></td>
+    	      			<td style="text-align: right; font-family: 'Poppins';">$<%= z1.withdrawal_amount %></td>
+    	      		</tr>
+    	      	</tbody>
+    	      </table>
+    	    </div>
+    	  </div>
+    	</div>
+  	</section>
+
+  	<section>
+  		<div class="container secondCont">
+  			<div class="row justify-content-center">
+  				<% if (x1) { %>
+  					<% x1.forEach(i => { %>
+							<div class="col-12 col-xxl lname" style="color: #E4D00A; font-family: 'Poppins'; font-weight: bold;">
+								<%= i?.level_name.toUpperCase() %>
+							</div>
+
+							<div class="col-12 col-xxl mt-3 ms-5" style="font-size: 13px;">
+								<div class="row">
+									<div class="col-12 col-sm-4 text-center text-white border-0 mb-3 d-flex justify-content-center align-items-center">
+										<img src=<%= i?.image_url %> class="img-fluid" width="150px">
+									</div>
+									<div class="col-12 col-sm-8 p-3 text-white border-0 mb-3 itemDiv">
+										<div>
+											<div class="mb-2" style="font-family: 'Poppins';">Price</div>
+											<div class="mb-2" style="font-family: 'Poppins';">Daily income</div>
+											<div class="mb-2" style="font-family: 'Poppins';">Machine profit</div>
+											<div class="mb-2" style="font-family: 'Poppins';">Machine quantity</div>
+											<div class="mb-2" style="font-family: 'Poppins';">Min balance (Cash pledge)</div>
+											<div class="mb-2" style="font-family: 'Poppins';">Withdrawal amount</div>
+										</div>
+										<div>
+											<div class="mb-2" style="font-family: 'Poppins';">$<%= i?.level_price %></div>
+											<div class="mb-2" style="font-family: 'Poppins';">$<%= i?.level_income %></div>
+											<div class="mb-2" style="font-family: 'Poppins';">$<%= i?.machine_profit %></div>
+											<div class="mb-2" style="font-family: 'Poppins';"><%= i?.machine_quantity %></div>
+											<div class="mb-2" style="font-family: 'Poppins';">$<%= i?.min_balance %></div>
+											<div class="mb-2" style="font-family: 'Poppins';">$<%= i?.withdrawal_amount %></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row text-center mb-3 secondRow">
+								<div class="col-6" style="background-color: #4F7942;">
+									<a class="btn" style="text-decoration: none; color: white; font-family: 'Poppins'; font-weight: bold;">$<%= i?.level_price %></a>
+								</div>
+								
+								<div class="col-6" style="background-color: #355E3B;">
+									<a href="/user/buyVip/<%= i?.level_name %>" 
+										class="btn w-100" style="text-decoration: none; color: #1B1212; font-family: 'Poppins'; font-weight: bold;"
+									>Buy now</a>
+								</div>
+							</div>
+					<% }) %>
+				<% } %>
+  			</div>
+  		</div>
+  	</section>
+
+  	<section>
+  		<div class="container" style="height: 70px;"></div>
+  	</section>
+
+  	<footer>
+		<%- include('./includes/footer.ejs', { name: 'vip1' }) %>
+	</footer>
+
+	<script>
+        window.addEventListener('load', function () {
+            // console.log("hii...");
+            // Get the loading spinner element
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            // Hide the loading spinner
+            loadingSpinner.style.display = 'none';
+        });
+    </script>
+
+	<script>
+		let levelName = globalThis.document.getElementById('level_name');
+		const lname = globalThis.document.querySelectorAll('.lname');
+		let gti = globalThis.document.getElementsByClassName('gti');
+
+		Array.from(lname).forEach(i => {
+			let t = i.textContent.includes(levelName.textContent.toUpperCase()) || i.textContent.includes('FREE VIP');
+
+			// console.log(i.textContent, t);
+
+			if (t) {
+				i.nextElementSibling.nextElementSibling.children[1].style.backgroundColor = 'dimgray';
+				i.nextElementSibling.nextElementSibling.children[1].style.pointerEvents = 'none';
+			}
+			else {
+				i.nextElementSibling.nextElementSibling.children[1].style.backgroundColor = '#7CFC00';
+				i.nextElementSibling.nextElementSibling.children[1].style.color = 'white';
+			}
+		})
+
+		function changeIconColor(element) {
+	        // Remove 'activeNav' class from all links
+	        sdocument.querySelectorAll('.nav-link i').forEach(icon => {
+		        icon.style.color = '#ffffff';
+		    });
+		    document.querySelectorAll('.nav-link span').forEach(text => {
+		        text.style.color = 'white';
+		    });
+
+		    // Set the clicked icon and text to green
+		    let icon = link.querySelector('i');
+		    icon.style.color = '#7CFC00';
+
+		    let text = link.querySelector('span');
+		    text.style.color = '#7CFC00';
+		}
+	</script>
+
+<%- include('./includes/end.ejs') %>
